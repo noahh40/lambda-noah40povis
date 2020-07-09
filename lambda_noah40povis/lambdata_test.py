@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import unittest
 from random import randint 
 #unittest supports a type of tests called unit test 
@@ -9,8 +10,9 @@ from random import randint
 #there are also manual/non-code test that are common 
 # - User acceptance testing: show it to a user get feedback 
 #Manual running and checking 
-
-from example_module import increment 
+import example_module
+#from example_module import increment, COLORS
+from oop_examples import SocialMediaUser
 
 
 class ExampleModuleTests(unittest.TestCase):
@@ -20,9 +22,9 @@ class ExampleModuleTests(unittest.TestCase):
         #unit test work by having some logic/values 
         #that use the code being tested
         x1 = 7 
-        y1 = increment(x1)
+        y1 = example_module.increment(x1)
         x2 = -10 
-        y2 = increment(x2)
+        y2 = example_module.increment(x2)
 
         # and then making sure the output is as expected with assertions 
         self.assertEqual(y1, 8)
@@ -57,8 +59,27 @@ class SocialMediaUserTests(unittest.TestCase):
             user1.receive_upvote()
         self.assertEqual(user1.is_popular(), True)
 
+class ExampleModuleTests(unittest.TestCase):
+    """Making sure our example module works as expected."""
+    def test_increment(self):
+        """Testing that the increment function adds one to a number."""
+        # Unit tests work by having some logic/values
+        # that use the code being tested
+        x1 = 7
+        y1 = example_module.increment(x1)
+        x2 = -10
+        y2 = example_module.increment(x2)
+        # And then making sure the output is as expected with assertions
+        self.assertEqual(y1, 8)
+        self.assertEqual(y2, -9)
+    def test_colors(self):
+        """Testing that some of the expected colors are in the tuple."""
+        self.assertIn('Orange', example_module.COLORS)
+        self.assertNotIn('Aquamarine', example_module.COLORS)
+
 if __name__ == '__main___':
-    #this conditional is for code that will be run 
+    #this conditional is 
+    # for code that will be run 
     # when we execute our file from the command line 
     unittest.main()
 
